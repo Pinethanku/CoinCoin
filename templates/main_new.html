@@ -1,162 +1,230 @@
 {%with messages = get_flashed_messages()%}
 {%if messages %}
-  <script type="text/javascript">
-    alert("{{messages[-1]}}");
-  </script>
-  {%endif%}
+<script type="text/javascript">
+	alert("{{messages[-1]}}");
+</script>
+{%endif%}
 {%endwith%}
 
 <!DOCTYPE HTML>
 <!--
-	Verti by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+   Verti by HTML5 UP
+   html5up.net | @ajlkn
+   Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<head>
-		<title>CoinCoin</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-	</head>
-	<body class="is-preload homepage">
-		<form action = "http://localhost:5000" method ="post">
+
+<head>
+	<title>CoinCoin</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+
+<body class="is-preload homepage">
+	<form action="http://localhost:5000" method="post">
 		<div id="page-wrapper">
 
 			<!-- Header -->
-				<div id="header-wrapper">
-					<header id="header" class="container">
+			<div id="header-wrapper">
+				<header id="header" class="container">
 
-						<!-- Logo -->
-							<div id="logo">
-								<h1><a href="index.html">Coin</a></h1>
-								<span>by HH</span>
-							</div>
+					<!-- Logo -->
+					<div id="logo">
+						<h1><a href="http://localhost:5000/">Coin</a></h1>
+						<span>by HH</span>
+					</div>
 
-						<!-- Nav -->
-							<nav id="nav">
-								<ul>
-									<li class="current"><a href="http://localhost:5000/">Mainpage</a></li>
-									<li><a href="#">Coin State</a></li>
-									<li><a href="http://localhost:5000/loginfirst">Buy Coin</a></li>
-									<li><a href="http://localhost:5000/loginfirst">Sell Coin</a></li>
-									<li><a href="http://localhost:5000/login">Login</a></li>
-								</ul>
-							</nav>
+					<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li class="current"><a href="http://localhost:5000/">Mainpage</a></li>
+							<li><a href="http://localhost:5000/loginfirst">Buy Coin</a></li>
+							<li><a href="http://localhost:5000/loginfirst">Sell Coin</a></li>
+							<li><a href="http://localhost:5000/login">Login</a></li>
+							<li><a href="http://localhost:5000/signup">Sign up</a></li>
+						</ul>
+					</nav>
 
-					</header>
-				</div>
+				</header>
+			</div>
 
 
 			<!-- Banner -->
-            <div id="banner-wrapper">
-                <div id="banner" class="box container">
-                    <div class="row">
-                        <div class="col-7 col-12-medium">
-							<h2 style="margin-top: 0px; padding-bottom: 25px; font-size: 40px">코인 가격 변동 그래프</h2>
-                            <canvas id="coin-chart"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-				 <!-- Scripts -->
-				 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1"></script>
-				 <script src="assets/js/jquery.min.js"></script>
-				 <script src="assets/js/jquery.dropotron.min.js"></script>
-				 <script src="assets/js/browser.min.js"></script>
-				 <script src="assets/js/breakpoints.min.js"></script>
-				 <script src="assets/js/util.js"></script>
-				 <script src="assets/js/main.js"></script>
-		 
-				 <script>
-					 // 그래프 데이터 준비
-					 var coinData = [
-						 { date: '2023-05-20', price: 100 },
-						 { date: '2023-05-21', price: 120 },
-						 { date: '2023-05-22', price: 90 },
-						 // 추가 데이터
-					 ];
-		 
-					 // 그래프 그리기
-					 document.addEventListener("DOMContentLoaded", function () {
-						 var ctx = document.getElementById("coin-chart").getContext("2d");
-		 
-						 // 날짜와 가격 데이터 분리
-						 var dates = coinData.map(item => item.date);
-						 var prices = coinData.map(item => item.price);
-		 
-						 var chart = new Chart(ctx, {
-							 type: 'line',
-							 data: {
-								 labels: dates,
-								 datasets: [{
-									 label: '가격',
-									 data: prices,
-									 fill: false,
-									 borderColor: 'rgb(75, 192, 192)',
-									 tension: 0.1
-								 }]
-							 },
-							 options: {
-								 scales: {
-									 x: {
-										 display: true,
-										 title: {
-											 display: true,
-											 text: '날짜'
-										 }
-									 },
-									 y: {
-										 display: true,
-										 title: {
-											 display: true,
-											 text: '가격'
-										 }
-									 }
-								 }
-							 }
-						 });
-					 });
-				 </script>
-
-
-
-			<!-- Footer -->
-				<div id="footer-wrapper">
-					<footer id="footer" class="container">
-						<div class="row">
-							<section class="widget links">
-								<h3>Developers</h3>
-								<ul class="style2">
-									<li>한승주(seungdma@gmail.com)</li>
-									<li>허여솔(pinethanku21@gmail.com)</li>
-								</ul>
-							</section>
+			<div id="banner-wrapper">
+				<div id="banner" class="box container">
+					<div class="row">
+						<div class="col-7 col-12-medium">
+							<h2>코인 시세</h2>
+							<canvas id="coin-chart"></canvas>
 						</div>
-						<div class="row">
-							<div class="col-12">
-								<div id="copyright">
-									<ul class="menu">
-										<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="https://github.com/orgs/2023-Software-Engineering-and-Design-HH/repositories">ICE HH</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</footer>
+					</div>
 				</div>
-
 			</div>
+		</div>
+		<!-- Scripts -->
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1"></script>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+
+
+		<script>
+			// 그래프 데이터 준비
+			var coinData = JSON.parse('{{ graphdata | tojson | safe }}');
+
+			// 그래프 그리기
+			document.addEventListener("DOMContentLoaded", function () {
+				var container = document.getElementById("banner");
+				var canvas = document.createElement("canvas");
+				container.appendChild(canvas);
+				var ctx = canvas.getContext("2d");
+
+				// 캔버스 가로 크기 설정
+				canvas.width = container.offsetWidth;
+
+				// 캔버스 세로 크기 설정
+				var chartHeight = 500; // 그래프의 세로 크기를 지정하세요
+				canvas.height = chartHeight;
+
+				// 날짜와 가격 데이터 분리 및 역순으로 처리
+				var dates = coinData.map(item => item[0]).reverse();
+				var prices = coinData.map(item => item[1]).reverse();
+
+				var chart = new Chart(ctx, {
+					type: 'line',
+					data: {
+						labels: dates,
+						datasets: [{
+							label: '가격',
+							data: prices,
+							fill: false,
+							borderColor: 'rgb(75, 192, 192)',
+							tension: 0.1
+						}]
+					},
+					options: {
+						responsive: true, // 캔버스 크기에 반응하도록 설정
+						maintainAspectRatio: true, // 캔버스 비율을 유지하도록 설정
+						aspectRatio: container.offsetWidth / chartHeight, // 캔버스의 비율을 지정
+						scales: {
+							x: {
+								display: true,
+								title: {
+									display: true,
+									text: '날짜'
+								}
+							},
+							y: {
+								display: true,
+								title: {
+									display: true,
+									text: '가격'
+								}
+							}
+						}
+					}
+				});
+			});
+		</script>
+
+		<!-- Footer -->
+		<div id="footer-wrapper">
+			<footer id="footer" class="container">
+				<div class="row">
+					<div class="col-3 col-6-medium col-12-small">
+
+						<!-- Links -->
+						<section class="widget links">
+							<h3>Random Stuff</h3>
+							<ul class="style2">
+								<li><a href="#">Etiam feugiat condimentum</a></li>
+								<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
+								<li><a href="#">Sed porttitor cras in erat nec</a></li>
+								<li><a href="#">Felis varius pellentesque potenti</a></li>
+								<li><a href="#">Nullam scelerisque blandit leo</a></li>
+							</ul>
+						</section>
+
+					</div>
+					<div class="col-3 col-6-medium col-12-small">
+
+						<!-- Links -->
+						<section class="widget links">
+							<h3>Random Stuff</h3>
+							<ul class="style2">
+								<li><a href="#">Etiam feugiat condimentum</a></li>
+								<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
+								<li><a href="#">Sed porttitor cras in erat nec</a></li>
+								<li><a href="#">Felis varius pellentesque potenti</a></li>
+								<li><a href="#">Nullam scelerisque blandit leo</a></li>
+							</ul>
+						</section>
+
+					</div>
+					<div class="col-3 col-6-medium col-12-small">
+
+						<!-- Links -->
+						<section class="widget links">
+							<h3>Random Stuff</h3>
+							<ul class="style2">
+								<li><a href="#">Etiam feugiat condimentum</a></li>
+								<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
+								<li><a href="#">Sed porttitor cras in erat nec</a></li>
+								<li><a href="#">Felis varius pellentesque potenti</a></li>
+								<li><a href="#">Nullam scelerisque blandit leo</a></li>
+							</ul>
+						</section>
+
+					</div>
+					<div class="col-3 col-6-medium col-12-small">
+
+						<!-- Contact -->
+						<section class="widget contact last">
+							<h3>Contact Us</h3>
+							<ul>
+								<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a>
+								</li>
+								<li><a href="#" class="icon brands fa-facebook-f"><span
+											class="label">Facebook</span></a></li>
+								<li><a href="#" class="icon brands fa-instagram"><span
+											class="label">Instagram</span></a></li>
+								<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a>
+								</li>
+								<li><a href="#" class="icon brands fa-pinterest"><span
+											class="label">Pinterest</span></a></li>
+							</ul>
+							<p>서울특별시 중구 필동로1길 30<br />
+								동국대학교, 04620<br />
+								02-2260-3114</p>
+						</section>
+
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12">
+						<div id="copyright">
+							<ul class="menu">
+								<li>&copy; Untitled. All rights reserved</li>
+								<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
 
 		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+	</form>
+</body>
 
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-		
-		</form>
-	</body>
 </html>

@@ -17,7 +17,7 @@
 </head>
 
 <body class="is-preload homepage">
-	
+	<form action="http://localhost:5000/buycoin" method="post">
 		<div id="page-wrapper">
 
 			<!-- Header -->
@@ -26,139 +26,107 @@
 
 					<!-- Logo -->
 					<div id="logo">
-						<h1><a href="http://localhost:5000/main_after_login">Coin</a></h1>
-						<span>{{ username }}</span>
+						<h1><a href="http://localhost:5000/afterlogin">Coin</a></h1>
+						<span>Login as {{ username }}</span>
 					</div>
 
 					<!-- Nav -->
 					<nav id="nav">
 						<ul>
-							<li><a href="http://localhost:5000/main_after_login">Mainpage</a></li>
+							<li><a href="http://localhost:5000/afterlogin">Mainpage</a></li>
 							<li class="current"><a href="http://localhost:5000/buycoin">Buy Coin</a></li>
 							<li><a href="http://localhost:5000/sellcoin">Sell Coin</a></li>
 							<li><a href="http://localhost:5000/mypage">Mypage</a></li>
 							<li><a href="http://localhost:5000/logout">Logout</a></li>
-
 				</header>
 			</div>
 
-            <!-- Main -->
-            <div id="main-wrapper" style='padding-bottom : 70px'>
-                <div class="container">
-                    <div class="row gtr-200">
-                        <div class="col-8 col-12-medium">
-                            <div id="content">
+			<!-- Main -->
+			<div id="main-wrapper" style='padding-bottom : 70px'>
+				<div class="container">
+					<div class="row gtr-200">
+						<div class="col-8 col-12-medium">
+							<div id="content">
 
-                                <!-- Content -->
-                                    <article>
+								<!-- Content -->
+								<article>
 
-                                        <h2>marketplace에서 사기 </h2>
-                                        <h2 style="font-size:22px; color: gray" >marketplace 잔여 코인 : {{initial_number}} </h2>
+									<h2>marketplace에서 사기 </h2>
+									<h2>marketplace 코인 개수 : {{initial_number}} </h2>
 
-										<form action="http://localhost:5000/buycoin_initial" method="post">
+									<h5 style='margin-bottom : 10px'>구매할 coin 개수 : </h5>
+									<div style='display: flex; height : 50px'>
+										<input style='width : 350px; margin-right : 20px; border: solid gray'
+											type="text" name='initialbuy' />
+										<input style='padding : 0px 10px 0px 10px' name="buy_initial_coin" type="submit"
+											value="구매" />
+									</div>
 
-                                        <h5 style='font-size:18px; margin-bottom : 10px' >구매할 coin 개수</h5>
-                                        <div style = 'display: flex; height : 50px'>
-                                            <input style='width : 350px; margin-right : 20px; border: solid gray' type = "text" name = 'initialbuy' />
-                                            <input style='padding : 0px 10px 0px 10px' type = "submit" value = "구매" />
-                                        </div>
-										</form>
-
-                                    </article>
-
-                            </div>
-                        </div>
-                        <div class="col-4 col-12-medium">
-                            <div id="sidebar">
-                                <div class="row">
-                                    <div class="col-7 col-12-medium">
-                                        <h2 style='margin-bottom : 40px'>{{username}} 님</h2>
-
-                                        <h3 style='margin-bottom : 10px '>현재 계좌 잔액</h3>
-                                        <p style='margin-bottom : 40px '>{{money}}원</p>
-                                    
-                                        <h3 style='margin-bottom : 10px '>현재 보유 코인</h3>
-                                        <p>{{coin}}개</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>	
-        <!-- Features -->
-				<div id="features-wrapper">
-					<div class="container">
-						<div class="row">
-                            {% for ml in post_list %}
-
-							<div class="col-4 col-12-medium">
-
-								<!-- Box -->
-									<section class="box feature">
-										<a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
-										<div class="inner">
-											<header>
-												<form action="http://localhost:5000/buycoin_post" method="post">
-													<h2>Post #{{loop.index}}</h2>
-													
-													{% for key, value in ml.items() %}
-														{% if key == "_id" %}
-															<input type="hidden"  name="buypostid" value={{ value }}>
-														{% endif %}
-											
-														<p>	 {{ key }} : {{ value }}  </p>
-													{% endfor %}
-													
-													<button type="button" onclick="this.parentNode.submit()">구매</button>
-													
-												</form>
-
-										</header>
-										</div>
-									</section>
+								</article>
 
 							</div>
-                            {% endfor %}
 						</div>
-					</div>
-				</div>
+						<div class="col-4 col-12-medium">
+							<div id="sidebar">
+								<div class="row">
+									<div class="col-7 col-12-medium">
+										<h2 style='margin-bottom : 40px'>{{username}} 님</h2>
 
-				<!-- Footer -->
-				<div id="footer-wrapper">
-					<footer id="footer" class="container">
-						<div class="row">
-							<section class="widget links">
-								<h3>Developers</h3>
-								<ul class="style2">
-									<li>한승주(seungdma@gmail.com)</li>
-									<li>허여솔(pinethanku21@gmail.com)</li>
-								</ul>
-							</section>
-						</div>
-						<div class="row">
-							<div class="col-12">
-								<div id="copyright">
-									<ul class="menu">
-										<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="https://github.com/orgs/2023-Software-Engineering-and-Design-HH/repositories">ICE HH</a></li>
-									</ul>
+										<h3 style='margin-bottom : 10px '>현재 계좌 잔액</h3>
+										<p style='margin-bottom : 40px '>{{money}}원</p>
+
+										<h3 style='margin-bottom : 10px '>현재 보유 코인</h3>
+										<p>{{coin}}개</p>
+									</div>
 								</div>
 							</div>
 						</div>
-					</footer>
+					</div>
 				</div>
-			
+			</div>
 
-		<!-- Scripts -->
+			<!-- Features -->
+			<div id="features-wrapper">
+				<div class="container">
+					<div class="row">
+						{% for document in documents %}
+						<div class="col-4 col-12-medium">
 
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/jquery.dropotron.min.js"></script>
-		<script src="assets/js/browser.min.js"></script>
-		<script src="assets/js/breakpoints.min.js"></script>
-		<script src="assets/js/util.js"></script>
-		<script src="assets/js/main.js"></script>
+							<!-- Box -->
+							<section class="box feature">
+								<a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
+								<div class="inner">
+									<header>
+										<h2>POST{{ document.post_index }}</h2>
+										<p>판매자 ID : {{ document.Seller }}</p>
+										<p>개당 가격 : {{ document.Price }}</p>
+										<p>판매 개수 : {{ document.Quantity }}</p>
+										<P>총 가격 : {{ document.total_price }}</P>
+									</header>
+									{% if document.Seller == username %}
+									<input style='padding : 0px 10px 0px 10px' type="submit"
+										name="cancel{{ document.post_index }}" value="삭제" />
+									{% else %}
+									<input style='padding : 0px 10px 0px 10px' type="submit"
+										name="buy_posted_coin{{ document.post_index }}" value="구매" />
+									{% endif %}
+								</div>
+							</section>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
 
-	
+			<!-- Scripts -->
+
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+	</form>
 </body>
 
 </html>
