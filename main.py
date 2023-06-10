@@ -3,7 +3,7 @@ from bson.objectid import ObjectId
 from pymongo import MongoClient
 from datetime import datetime
 import json
-cluster = MongoClient("mongodb+srv://smdoo:Me2sChTXYh49P3Lk@cluster0.ydrdzo1.mongodb.net/?retryWrites=true&w=majority")
+cluster = MongoClient("mongodb+srv://hysol:lab6120!@cluster0.saxyuac.mongodb.net/?retryWrites=true&w=majority")
 db = cluster["software_engineering"]
 collection = db["test"]
 #초기 코인 정보 db
