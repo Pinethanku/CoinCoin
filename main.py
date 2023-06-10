@@ -62,7 +62,6 @@ def login():
 def signup():
     if request.method == 'POST':
         # 폼 데이터에서 필드 값 추출
-        username = request.form['username']
         id = request.form['id']
         password = request.form['password']
         password_confirm = request.form['password_confirm']
@@ -78,7 +77,7 @@ def signup():
             flash("이미 존재하는 id입니다.")
             return redirect(url_for('login'))  
         
-        collection.insert_one({"_id": id, "pw": password, "name": username, "coin" : 0, "money" : 0})
+        collection.insert_one({"_id": id, "pw": password, "coin" : 0, "money" : 0})
         flash("회원가입해주셔서 감사합니다! 로그인 창으로 이동합니다.")
         return redirect(url_for('login'))   
     else :
